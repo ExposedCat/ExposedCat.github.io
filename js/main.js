@@ -1,51 +1,20 @@
-﻿new WOW().init()
-const animated_elems = $('.animation-jello'),
-    pfx = ["webkit", "moz", "MS", "o", ""]
-
-$('.animation-jello').click(function () {
-    $(this).addClass('animated jello')
-})
-$('a#price').click(function () {
+﻿$('a#price').click(function () {
     $('#price_modal').css({
         visibility: 'visible'
     })
-    $('#price_modal').addClass('animated bounceInUp')
     $('body').css({
         'overflow-y': 'hidden',
         'padding-right': '16px'
     })
 })
 $('#price_close').click(function () {
-    $('#price_modal').addClass('animated bounceOutDown')
+    $('#price_modal').css({
+        visibility: 'hidden'
+    })
     $('body').css({
         'overflow-y': 'scroll',
         'padding-right': '0'
     })
-})
-function PrefixedEvent(element, type, callback) {
-    for (let p = 0; p < pfx.length; p++) {
-        if (!pfx[p]) {
-            type = type.toLowerCase()
-        }
-        element.addEventListener(pfx[p] + type, callback, false)
-    }
-}
-for (let elem of animated_elems) {
-    PrefixedEvent(elem, "AnimationEnd", () => {
-        $(elem).removeClass('animated jello')
-        $('#price_modal').removeClass('animated bounceInUp')
-        $('#price_modal').removeClass('animated bounceOutDown')
-    })
-}
-PrefixedEvent($('#price_modal')[0], "AnimationEnd", () => {
-    if ($('#price_modal').hasClass('animated bounceInUp')) {
-        $('#price_modal').removeClass('animated bounceInUp')
-    } else {
-        $('#price_modal').removeClass('animated bounceOutDown')
-        $('#price_modal').css({
-            visibility: 'hidden'
-        })
-    }
 })
 $('.work_img').click(function () {
     $('#modal_img').attr('src', $(this).attr('src'))

@@ -155,7 +155,6 @@ li {
     display: flex;
     flex-direction: column;
     align-items: center;
-    visibility: hidden;
     min-width: 375px;
     color: #fff;
     /* overflow: hidden; */
