@@ -4,11 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portfolio of Artem Prokop, software engineer working with TypeScript, Python, web platforms, infrastructure, and developer tooling.">
+  <meta name="theme-color" content="#f6f3ee" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
   <meta property="og:title" content="Artem Prokop">
   <meta property="og:description" content="Software engineer building web platforms, automation, developer tooling, desktop apps, and AI-adjacent products.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://github.com/ExposedCat.png">
   <title>Artem Prokop</title>
+  <script>
+    (() => {
+      try {
+        const theme = localStorage.getItem("portfolio-theme");
+
+        if (theme === "light" || theme === "dark") {
+          document.documentElement.dataset.theme = theme;
+        }
+      } catch {
+      }
+    })();
+  </script>
   <style>
     @font-face {
       font-family: "PortfolioFont";
@@ -22,21 +36,141 @@
       --surface: #ffffff;
       --surface-soft: #ebe8df;
       --ink: #151515;
+      --lead: #323438;
       --muted: #5d6269;
       --line: #d7d1c6;
       --teal: #006b63;
       --coral: #bd4b3e;
       --gold: #a86a00;
       --blue: #315b9f;
+      --grid-line-x: rgba(21, 21, 21, 0.035);
+      --grid-line-y: rgba(21, 21, 21, 0.03);
+      --link-underline: rgba(0, 107, 99, 0.35);
       --glass: rgba(255, 255, 255, 0.42);
       --glass-strong: rgba(255, 255, 255, 0.58);
       --glass-line: rgba(255, 255, 255, 0.38);
       --glass-edge: rgba(21, 21, 21, 0.08);
       --glass-shadow: 0 22px 58px rgba(35, 31, 28, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.66);
       --shadow: 0 24px 70px rgba(35, 31, 28, 0.12);
+      --button-bg: rgba(21, 21, 21, 0.84);
+      --button-bg-hover: rgba(21, 21, 21, 0.9);
+      --button-ink: #ffffff;
+      --button-border: rgba(255, 255, 255, 0.42);
+      --button-shadow: 0 14px 34px rgba(21, 21, 21, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+      --button-secondary-bg: rgba(255, 255, 255, 0.46);
+      --button-secondary-ink: var(--ink);
+      --button-secondary-shadow: 0 10px 26px rgba(35, 31, 28, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.58);
+      --portrait-glass-bg: rgba(255, 255, 255, 0.28);
+      --tag-bg: rgba(255, 255, 255, 0.44);
+      --tag-ink: #2d3338;
+      --tag-shadow: 0 8px 20px rgba(35, 31, 28, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.58);
+      --contact-bg: rgba(18, 18, 18, 0.86);
+      --contact-ink: #ffffff;
+      --contact-muted: rgba(255, 255, 255, 0.74);
+      --contact-border: rgba(255, 255, 255, 0.16);
+      --contact-shadow: 0 24px 70px rgba(21, 21, 21, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      --contact-button-bg: rgba(255, 255, 255, 0.84);
+      --contact-button-bg-hover: #ffffff;
+      --contact-button-ink: var(--ink);
+      --contact-button-border: rgba(255, 255, 255, 0.56);
+      --contact-button-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.54);
       --radius: 12px;
       --pill: 999px;
       font-family: "PortfolioFont", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0d1117;
+      --surface: #151b23;
+      --surface-soft: #212830;
+      --ink: #f0f6fc;
+      --lead: #c9d1d9;
+      --muted: #8b949e;
+      --line: #30363d;
+      --teal: #58a6ff;
+      --coral: #ff7b72;
+      --gold: #d29922;
+      --blue: #79c0ff;
+      --grid-line-x: rgba(139, 148, 158, 0.055);
+      --grid-line-y: rgba(139, 148, 158, 0.045);
+      --link-underline: rgba(88, 166, 255, 0.42);
+      --glass: rgba(240, 246, 252, 0.052);
+      --glass-strong: rgba(240, 246, 252, 0.078);
+      --glass-line: rgba(139, 148, 158, 0.16);
+      --glass-edge: rgba(88, 166, 255, 0.12);
+      --glass-shadow: 0 30px 86px rgba(1, 4, 9, 0.48), inset 0 1px 0 rgba(240, 246, 252, 0.16);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+      --button-bg: rgba(242, 244, 241, 0.9);
+      --button-bg-hover: #ffffff;
+      --button-ink: #151515;
+      --button-border: rgba(88, 166, 255, 0.22);
+      --button-shadow: 0 16px 40px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.48);
+      --button-secondary-bg: rgba(240, 246, 252, 0.052);
+      --button-secondary-ink: var(--ink);
+      --button-secondary-shadow: 0 12px 32px rgba(1, 4, 9, 0.34), inset 0 1px 0 rgba(240, 246, 252, 0.14);
+      --portrait-glass-bg: rgba(240, 246, 252, 0.042);
+      --tag-bg: rgba(240, 246, 252, 0.052);
+      --tag-ink: #c9d1d9;
+      --tag-shadow: 0 10px 24px rgba(1, 4, 9, 0.28), inset 0 1px 0 rgba(240, 246, 252, 0.13);
+      --contact-bg: rgba(240, 246, 252, 0.052);
+      --contact-ink: var(--ink);
+      --contact-muted: rgba(201, 209, 217, 0.76);
+      --contact-border: rgba(139, 148, 158, 0.16);
+      --contact-shadow: 0 30px 86px rgba(1, 4, 9, 0.52), inset 0 1px 0 rgba(240, 246, 252, 0.15);
+      --contact-button-bg: rgba(242, 244, 241, 0.88);
+      --contact-button-bg-hover: #ffffff;
+      --contact-button-ink: #151515;
+      --contact-button-border: rgba(88, 166, 255, 0.18);
+      --contact-button-shadow: 0 14px 34px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.44);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --bg: #0d1117;
+        --surface: #151b23;
+        --surface-soft: #212830;
+        --ink: #f0f6fc;
+        --lead: #c9d1d9;
+        --muted: #8b949e;
+        --line: #30363d;
+        --teal: #58a6ff;
+        --coral: #ff7b72;
+        --gold: #d29922;
+        --blue: #79c0ff;
+        --grid-line-x: rgba(139, 148, 158, 0.055);
+        --grid-line-y: rgba(139, 148, 158, 0.045);
+        --link-underline: rgba(88, 166, 255, 0.42);
+        --glass: rgba(240, 246, 252, 0.052);
+        --glass-strong: rgba(240, 246, 252, 0.078);
+        --glass-line: rgba(139, 148, 158, 0.16);
+        --glass-edge: rgba(88, 166, 255, 0.12);
+        --glass-shadow: 0 30px 86px rgba(1, 4, 9, 0.48), inset 0 1px 0 rgba(240, 246, 252, 0.16);
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+        --button-bg: rgba(242, 244, 241, 0.9);
+        --button-bg-hover: #ffffff;
+        --button-ink: #151515;
+        --button-border: rgba(88, 166, 255, 0.22);
+        --button-shadow: 0 16px 40px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.48);
+        --button-secondary-bg: rgba(240, 246, 252, 0.052);
+        --button-secondary-ink: var(--ink);
+        --button-secondary-shadow: 0 12px 32px rgba(1, 4, 9, 0.34), inset 0 1px 0 rgba(240, 246, 252, 0.14);
+        --portrait-glass-bg: rgba(240, 246, 252, 0.042);
+        --tag-bg: rgba(240, 246, 252, 0.052);
+        --tag-ink: #c9d1d9;
+        --tag-shadow: 0 10px 24px rgba(1, 4, 9, 0.28), inset 0 1px 0 rgba(240, 246, 252, 0.13);
+        --contact-bg: rgba(240, 246, 252, 0.052);
+        --contact-ink: var(--ink);
+        --contact-muted: rgba(201, 209, 217, 0.76);
+        --contact-border: rgba(139, 148, 158, 0.16);
+        --contact-shadow: 0 30px 86px rgba(1, 4, 9, 0.52), inset 0 1px 0 rgba(240, 246, 252, 0.15);
+        --contact-button-bg: rgba(242, 244, 241, 0.88);
+        --contact-button-bg-hover: #ffffff;
+        --contact-button-ink: #151515;
+        --contact-button-border: rgba(88, 166, 255, 0.18);
+        --contact-button-shadow: 0 14px 34px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.44);
+      }
     }
 
     * {
@@ -50,8 +184,8 @@
     body {
       margin: 0;
       background:
-        linear-gradient(90deg, rgba(21, 21, 21, 0.035) 1px, transparent 1px),
-        linear-gradient(rgba(21, 21, 21, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line-x) 1px, transparent 1px),
+        linear-gradient(var(--grid-line-y) 1px, transparent 1px),
         var(--bg);
       background-size: 44px 44px, 44px 44px, auto;
       color: var(--ink);
@@ -60,7 +194,7 @@
 
     a {
       color: inherit;
-      text-decoration-color: rgba(0, 107, 99, 0.35);
+      text-decoration-color: var(--link-underline);
       text-underline-offset: 0.22em;
       transition: color 160ms ease, text-decoration-color 160ms ease, border-color 160ms ease, background 160ms ease, transform 160ms ease;
     }
@@ -73,6 +207,70 @@
     .page-shell {
       width: min(1120px, calc(100% - 48px));
       margin: 0 auto;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 10;
+      display: inline-flex;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--glass-line);
+      border-radius: var(--pill);
+      background: var(--glass);
+      color: var(--ink);
+      box-shadow: var(--glass-shadow);
+      cursor: pointer;
+      -webkit-backdrop-filter: blur(2px) saturate(1.25);
+      backdrop-filter: blur(2px) saturate(1.25);
+      transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .theme-toggle:hover {
+      background: var(--glass-strong);
+      transform: translateY(-1px);
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 3px solid var(--teal);
+      outline-offset: 3px;
+    }
+
+    .theme-toggle__icon {
+      display: block;
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+    }
+
+    .theme-toggle__icon--sun {
+      display: none;
+    }
+
+    :root[data-theme="dark"] .theme-toggle__icon--moon {
+      display: none;
+    }
+
+    :root[data-theme="dark"] .theme-toggle__icon--sun {
+      display: block;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-toggle__icon--moon {
+        display: none;
+      }
+
+      :root:not([data-theme="light"]) .theme-toggle__icon--sun {
+        display: block;
+      }
     }
 
     .button {
@@ -122,7 +320,7 @@
     .lead {
       max-width: 720px;
       margin-bottom: 28px;
-      color: #323438;
+      color: var(--lead);
       font-size: 1.28rem;
       line-height: 1.55;
     }
@@ -136,31 +334,29 @@
     }
 
     .button {
-      border-color: rgba(255, 255, 255, 0.42);
-      background: rgba(21, 21, 21, 0.84);
-      color: #fff;
-      box-shadow: 0 14px 34px rgba(21, 21, 21, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.24);
-      -webkit-backdrop-filter: blur(18px) saturate(1.25);
-      backdrop-filter: blur(18px) saturate(1.25);
+      border-color: var(--button-border);
+      background: var(--button-bg);
+      color: var(--button-ink);
+      box-shadow: var(--button-shadow);
+      -webkit-backdrop-filter: blur(2px) saturate(1.25);
+      backdrop-filter: blur(2px) saturate(1.25);
     }
 
     .button:hover {
-      border-color: rgba(255, 255, 255, 0.62);
-      background: rgba(21, 21, 21, 0.9);
-      color: #fff;
+      background: var(--button-bg-hover);
+      color: var(--button-ink);
       transform: translateY(-1px);
     }
 
     .button.secondary {
       border-color: var(--glass-line);
-      background: rgba(255, 255, 255, 0.46);
-      color: var(--ink);
-      box-shadow: 0 10px 26px rgba(35, 31, 28, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.58);
+      background: var(--button-secondary-bg);
+      color: var(--button-secondary-ink);
+      box-shadow: var(--button-secondary-shadow);
     }
 
     .button.secondary:hover {
-      border-color: rgba(255, 255, 255, 0.62);
-      color: var(--ink);
+      color: var(--button-secondary-ink);
     }
 
     .portrait-wrap {
@@ -174,10 +370,10 @@
       inset: 18px -18px -18px 18px;
       border: 1px solid var(--glass-line);
       border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.28);
+      background: var(--portrait-glass-bg);
       box-shadow: var(--glass-shadow);
-      -webkit-backdrop-filter: blur(18px) saturate(1.25);
-      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(2px) saturate(1.25);
+      backdrop-filter: blur(2px) saturate(1.25);
       content: "";
     }
 
@@ -241,12 +437,11 @@
       padding: 22px;
       text-decoration: none;
       box-shadow: var(--glass-shadow);
-      -webkit-backdrop-filter: blur(22px) saturate(1.35);
-      backdrop-filter: blur(22px) saturate(1.35);
+      -webkit-backdrop-filter: blur(2px) saturate(1.35);
+      backdrop-filter: blur(2px) saturate(1.35);
     }
 
     .project-card:hover {
-      border-color: rgba(255, 255, 255, 0.56);
       background: var(--glass-strong);
       color: var(--ink);
       transform: translateY(-3px);
@@ -274,8 +469,8 @@
       background: var(--glass);
       padding: 22px;
       box-shadow: var(--glass-shadow);
-      -webkit-backdrop-filter: blur(18px) saturate(1.25);
-      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(2px) saturate(1.25);
+      backdrop-filter: blur(2px) saturate(1.25);
     }
 
     .stack {
@@ -290,14 +485,14 @@
       align-items: center;
       border: 1px solid var(--glass-line);
       border-radius: var(--pill);
-      background: rgba(255, 255, 255, 0.44);
+      background: var(--tag-bg);
       padding: 0 12px;
-      color: #2d3338;
+      color: var(--tag-ink);
       font-size: 0.94rem;
       font-weight: 700;
-      box-shadow: 0 8px 20px rgba(35, 31, 28, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.58);
-      -webkit-backdrop-filter: blur(16px) saturate(1.25);
-      backdrop-filter: blur(16px) saturate(1.25);
+      box-shadow: var(--tag-shadow);
+      -webkit-backdrop-filter: blur(2px) saturate(1.25);
+      backdrop-filter: blur(2px) saturate(1.25);
     }
 
     .timeline {
@@ -314,8 +509,8 @@
       background: var(--glass);
       padding: 18px;
       box-shadow: var(--glass-shadow);
-      -webkit-backdrop-filter: blur(18px) saturate(1.25);
-      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(2px) saturate(1.25);
+      backdrop-filter: blur(2px) saturate(1.25);
     }
 
     .timeline-item span {
@@ -338,19 +533,19 @@
       display: flex;
       flex-direction: column;
       gap: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      border: 1px solid var(--contact-border);
       border-radius: var(--radius);
-      background: rgba(18, 18, 18, 0.86);
-      color: #fff;
+      background: var(--contact-bg);
+      color: var(--contact-ink);
       padding: 34px;
-      box-shadow: 0 24px 70px rgba(21, 21, 21, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-      -webkit-backdrop-filter: blur(24px) saturate(1.2);
-      backdrop-filter: blur(24px) saturate(1.2);
+      box-shadow: var(--contact-shadow);
+      -webkit-backdrop-filter: blur(2px) saturate(1.2);
+      backdrop-filter: blur(2px) saturate(1.2);
     }
 
     .contact-band p {
       margin: 0;
-      color: rgba(255, 255, 255, 0.74);
+      color: var(--contact-muted);
     }
 
     .contact-band > div:first-child {
@@ -373,16 +568,15 @@
 
     .contact-band .button {
       flex: 1 1 140px;
-      border-color: rgba(255, 255, 255, 0.56);
-      background: rgba(255, 255, 255, 0.84);
-      color: var(--ink);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.54);
+      border-color: var(--contact-button-border);
+      background: var(--contact-button-bg);
+      color: var(--contact-button-ink);
+      box-shadow: var(--contact-button-shadow);
     }
 
     .contact-band .button:hover {
-      border-color: rgba(255, 255, 255, 0.8);
-      background: #fff;
-      color: var(--ink);
+      background: var(--contact-button-bg-hover);
+      color: var(--contact-button-ink);
     }
 
     .site-footer {
@@ -480,6 +674,23 @@
   </style>
 </head>
 <body>
+  <button class="theme-toggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+    <svg class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true" viewBox="0 0 24 24">
+      <path d="M20.4 14.8A8.5 8.5 0 0 1 9.2 3.6a8.5 8.5 0 1 0 11.2 11.2Z"></path>
+    </svg>
+    <svg class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2"></path>
+      <path d="M12 20v2"></path>
+      <path d="m4.93 4.93 1.41 1.41"></path>
+      <path d="m17.66 17.66 1.41 1.41"></path>
+      <path d="M2 12h2"></path>
+      <path d="M20 12h2"></path>
+      <path d="m6.34 17.66-1.41 1.41"></path>
+      <path d="m19.07 4.93-1.41 1.41"></path>
+    </svg>
+  </button>
+
   <main id="top">
     <div class="page-shell">
       <section class="hero" aria-labelledby="intro-title">
@@ -686,5 +897,54 @@
   <footer class="page-shell site-footer">
     <span>🄯 Artem Prokop · GPT 5.5 · Codex</span>
   </footer>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const toggle = document.querySelector(".theme-toggle");
+      const storageKey = "portfolio-theme";
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+      const themeColors = document.querySelectorAll('meta[name="theme-color"]');
+
+      if (!toggle) {
+        return;
+      }
+
+      const getResolvedTheme = () => root.dataset.theme || (prefersDark.matches ? "dark" : "light");
+
+      const updateToggle = () => {
+        const theme = getResolvedTheme();
+        const nextTheme = theme === "dark" ? "light" : "dark";
+
+        toggle.setAttribute("aria-pressed", String(theme === "dark"));
+        toggle.setAttribute("aria-label", `Switch to ${nextTheme} mode`);
+        toggle.title = `Switch to ${nextTheme} mode`;
+
+        themeColors.forEach((themeColor) => {
+          themeColor.content = theme === "dark" ? "#0d1117" : "#f6f3ee";
+        });
+      };
+
+      toggle.addEventListener("click", () => {
+        const nextTheme = getResolvedTheme() === "dark" ? "light" : "dark";
+
+        root.dataset.theme = nextTheme;
+
+        try {
+          localStorage.setItem(storageKey, nextTheme);
+        } catch {
+        }
+
+        updateToggle();
+      });
+
+      if (prefersDark.addEventListener) {
+        prefersDark.addEventListener("change", updateToggle);
+      } else {
+        prefersDark.addListener(updateToggle);
+      }
+
+      updateToggle();
+    })();
+  </script>
 </body>
 </html>
