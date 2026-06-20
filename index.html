@@ -424,6 +424,7 @@
     .project-grid {
       display: flex;
       flex-wrap: wrap;
+      counter-reset: project-card;
       justify-content: center;
       gap: 16px;
     }
@@ -431,6 +432,7 @@
     .project-card {
       flex: 0 1 calc((100% - 32px) / 3);
       min-height: 176px;
+      counter-increment: project-card;
       border: 1px solid var(--glass-line);
       border-radius: var(--radius);
       background: var(--glass);
@@ -439,6 +441,17 @@
       box-shadow: var(--glass-shadow);
       -webkit-backdrop-filter: blur(2px) saturate(1.35);
       backdrop-filter: blur(2px) saturate(1.35);
+    }
+
+    .project-card::before {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--gold);
+      content: counter(project-card, decimal-leading-zero);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.86rem;
+      font-weight: 900;
+      line-height: 1;
     }
 
     .project-card:hover {
