@@ -1,251 +1,674 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Play&display=swap&subset=cyrillic" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>EXPOSED CAT</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Artem Prokop, software engineer working with TypeScript, Python, web platforms, infrastructure, and developer tooling.">
+  <meta property="og:title" content="Artem Prokop">
+  <meta property="og:description" content="Software engineer building web platforms, automation, developer tooling, desktop apps, and AI-adjacent products.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://github.com/ExposedCat.png">
+  <title>Artem Prokop</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f3ee;
+      --surface: #ffffff;
+      --surface-soft: #ebe8df;
+      --ink: #151515;
+      --muted: #5d6269;
+      --line: #d7d1c6;
+      --teal: #006b63;
+      --coral: #bd4b3e;
+      --gold: #a86a00;
+      --blue: #315b9f;
+      --shadow: 0 24px 70px rgba(35, 31, 28, 0.12);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(21, 21, 21, 0.035) 1px, transparent 1px),
+        linear-gradient(rgba(21, 21, 21, 0.03) 1px, transparent 1px),
+        var(--bg);
+      background-size: 44px 44px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-color: rgba(0, 107, 99, 0.35);
+      text-underline-offset: 0.22em;
+      transition: color 160ms ease, text-decoration-color 160ms ease, border-color 160ms ease, background 160ms ease, transform 160ms ease;
+    }
+
+    a:hover {
+      color: var(--teal);
+      text-decoration-color: currentColor;
+    }
+
+    .page-shell {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 0 14px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    main {
+      overflow: clip;
+    }
+
+    .hero {
+      display: grid;
+      min-height: 100svh;
+      align-items: center;
+      gap: 44px;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+      padding: 48px 0 54px;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--teal);
+      font-size: 0.84rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 22px;
+      font-size: 5rem;
+      line-height: 0.95;
+    }
+
+    .lead {
+      max-width: 720px;
+      margin-bottom: 28px;
+      color: #323438;
+      font-size: 1.28rem;
+      line-height: 1.55;
+    }
+
+    .hero-actions,
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .button {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: #fff;
+      box-shadow: 0 10px 28px rgba(21, 21, 21, 0.16);
+    }
+
+    .button:hover {
+      background: var(--teal);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .button.secondary {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--ink);
+      box-shadow: none;
+    }
+
+    .button.secondary:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    .portrait-wrap {
+      position: relative;
+      justify-self: end;
+      width: min(360px, 100%);
+    }
+
+    .portrait-wrap::before {
+      position: absolute;
+      inset: 18px -18px -18px 18px;
+      border: 1px solid var(--ink);
+      border-radius: 8px;
+      background: repeating-linear-gradient(-45deg, rgb(255 255 255 / 0%) 0 8px, rgba(49, 91, 159, 0.12) 8px 16px);
+      content: "";
+    }
+
+    .portrait {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      border: 1px solid var(--ink);
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+    }
+
+    section {
+      scroll-margin-top: 92px;
+      padding: 64px 0;
+    }
+
+    .section-heading {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+      margin-bottom: 30px;
+      border-top: 1px solid var(--line);
+      padding-top: 28px;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: 2.2rem;
+      line-height: 1.08;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    #stack .section-heading {
+      grid-template-columns: 1fr;
+    }
+
+    #stack .section-heading p {
+      max-width: 720px;
+    }
+
+    .project-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .project-card {
+      flex: 0 1 calc((100% - 32px) / 3);
+      min-height: 248px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.74);
+      padding: 22px;
+      text-decoration: none;
+      box-shadow: 0 10px 28px rgba(35, 31, 28, 0.07);
+    }
+
+    .project-card:hover {
+      border-color: var(--teal);
+      background: #fff;
+      color: var(--ink);
+      transform: translateY(-3px);
+    }
+
+    .project-card .number {
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 900;
+    }
+
+    .project-card h3 {
+      margin: 32px 0 10px;
+      font-size: 1.34rem;
+      line-height: 1.12;
+    }
+
+    .project-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .experience-note {
+      margin-top: 18px;
+    }
+
+    .callout {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 22px;
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      border: 1px solid rgba(21, 21, 21, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      padding: 0 12px;
+      color: #2d3338;
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: 168px minmax(0, 1fr);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.74);
+      padding: 18px;
+    }
+
+    .timeline-item span {
+      color: var(--teal);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .timeline-item strong {
+      color: var(--ink);
+    }
+
+    .contact-band {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      border: 1px solid var(--ink);
+      border-radius: 8px;
+      background: var(--ink);
+      color: #fff;
+      padding: 34px;
+    }
+
+    .contact-band p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .contact-band > div:first-child {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-band h2 {
+      margin: 0;
+    }
+
+    .contact-band .socials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-top: 0;
+      width: 100%;
+    }
+
+    .contact-band .button {
+      flex: 1 1 140px;
+      border-color: rgba(255, 255, 255, 0.28);
+      background: #fff;
+      color: var(--ink);
+      box-shadow: none;
+    }
+
+    .contact-band .button.secondary {
+      background: transparent;
+      color: #fff;
+    }
+
+    .site-footer {
+      padding: 28px 0 42px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .hero,
+      .section-heading,
+      .experience-note {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 54px;
+        text-align: center;
+      }
+
+      h1 {
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 3.6rem;
+      }
+
+      .lead {
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .portrait-wrap {
+        justify-self: center;
+        width: min(320px, 88%);
+      }
+
+      .project-grid {
+        justify-content: center;
+      }
+
+      .project-card {
+        flex-basis: calc((100% - 16px) / 2);
+      }
+
+    }
+
+    @media (max-width: 620px) {
+      .page-shell {
+        width: min(100% - 48px, 1120px);
+      }
+
+      .portrait-wrap {
+        width: min(100%, 320px);
+      }
+
+      .portrait {
+        height: min(320px, calc(100vw - 48px));
+      }
+
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      h2 {
+        font-size: 1.82rem;
+      }
+
+      .lead {
+        font-size: 1.08rem;
+      }
+
+      section {
+        padding: 48px 0;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card {
+        flex-basis: 100%;
+        min-height: 210px;
+      }
+
+      .contact-band {
+        padding: 48px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <div id="start"></div>
-    <div class="wrapper">
-        <div class="mob_menu">
-            <img src="img/open.png" class="menu_button_img">
-            <ul class="mob_menu_ul hidden">
-                <li class="mob_menu_li">
-                    <a href="ExposedCat.github.io" class="mob_menu_a">ПРИМЕРЫ РАБОТ</a>
-                </li>
-                <li class="mob_menu_li">
-                    <a id="price" class="mob_menu_a">ЦЕНЫ</a>
-                </li>
-                <li class="mob_menu_li">
-                    <a href="skills.html" class="mob_menu_a">НАВЫКИ</a>
-                </li>
-                <li class="mob_menu_li">
-                    <a href="contacts.html" class="mob_menu_a">КОНТАКТЫ</a>
-                </li>
-            </ul>
+  <main id="top">
+    <div class="page-shell">
+      <section class="hero" aria-labelledby="intro-title">
+        <div>
+          <p class="eyebrow">Software engineer · open-source maintainer</p>
+          <h1 id="intro-title">Artem Prokop</h1>
+          <p class="lead">
+            I build practical software across web platforms, automation, developer tooling,
+            desktop integrations, and AI-adjacent products. Currently pushing limits at
+            <a href="https://www.microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft</a>.
+          </p>
+          <div class="hero-actions" aria-label="Primary links">
+            <a class="button" href="#experience" target="_blank" rel="noopener noreferrer">Projects</a>
+            <a class="button secondary" href="https://github.com/ExposedCat" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="button secondary" href="https://github.com/ExposedCat/ExposedCat/blob/main/assets/CV.pdf" target="_blank" rel="noopener noreferrer">PDF CV</a>
+          </div>
         </div>
-        <header>
-            <div class="small_header"></div>
-            <div class="main_header">
-                <ul class="menu">
-                    <li class="menu_li">
-                        <a href="ExposedCat.github.io" class="menu_a">ПРИМЕРЫ РАБОТ</a>
-                    </li>
-                    <li class="menu_li">
-                        <a id="price" class="menu_a">ЦЕНЫ</a>
-                    </li>
-                    <li class="menu_li menu_li_main animation-jello">
-                        <a class="menu_a menu_a_main">EXPOSED CAT</a>
-                    </li>
-                    <li class="menu_li">
-                        <a href="skills.html" class="menu_a">НАВЫКИ</a>
-                    </li>
-                    <li class="menu_li">
-                        <a href="contacts.html" class="menu_a">КОНТАКТЫ</a>
-                    </li>
-                </ul>
-            </div>
-        </header>
-        <div class="works">
-            <div class="info">
-                <h1 class="main_h">ИСПОЛЬЗУЕМЫЕ РЕСУРСЫ</h1>
-                <hr>
-                <ul class="res_ul">
-                    <li class="circle">
-                        <div class="animation-jello"><img title="Node.JS" class="res_img" src="img/nodejs.png" alt="node"></div>
-                    </li>
-                    <li class="circle">
-                        <div class="animation-jello"><img title="Python 3" class="res_img" src="img/python.png" alt="node"></div>
-                    </li>
-                    <li class="circle">
-                        <div class="animation-jello"><img title="Heroku" class="res_img" src="img/heroku.png" alt="node"></div>
-                    </li>
-                </ul>
-                <hr>
-                <h1 class="works_h"><a class="works_a goto" href="#projects"><span>РАБОТЫ</span><span>↓</span></a></h1>
-            </div>
-            <div class="lineend" id="projects">
-                <b>ВЫПОЛНЕНО 25+ ПРОЕКТOB</b>
-            </div>
-            <div class="works_container">
-                <div class="work wow fadeInLeft">
-                    <img src="img/ethereal.png" alt="work" class="work_img">
-                    <h2 class="work_h">Ethereal X</h2>
-                    <p>
-                        <span class="orange">@Ethereal_X_Bot</span>: Бот для групп. Модерация, мини-игры, статистика активности, пара дня и другие функции. Для получения подробностей и полного списка функций отправьте <i>/help</i>
-                    </p>
-                </div>
-                <br><br>
-                <div class="work wow fadeInRight">
-                    <img src="img/nodeadline.png" alt="work" class="work_img">
-                    <h2 class="work_h">No DeadLine</h2>
-                    <p>
-                        <span class="orange">@NoDeadlineBot</span>: Inline - бот, который генерирует отмазки.
-                        Пригодится, если хочешь посмеяться или нечего ответить заказчику.
-                        Для генерации просто напишите <i>@NoDeadLineBot</i> в любом диалоге
-                    </p>
-                </div>
-                <br><br>
-                <div class="work wow fadeInLeft">
-                    <img src="img/sos.png" alt="work" class="work_img">
-                    <h2 class="work_h">Send SOS</h2>
-                    <p>
-                        <span class="orange">@SendSOS_Bot</span>: Контроль и модерация @SOSDriver. Админка, ввод информации по шаблону, помогает формировать сообщения о запросах помощи.
-                    </p>
-                </div>
-                <br><br>
-                <div class="work wow fadeInRight">
-                    <img src="img/boxopenerbot.png" alt="work" class="work_img">
-                    <h2 class="work_h">Box Opener</h2>
-                    <p>
-                        <span class="orange">@BoxOpenerBot</span>: азартная мини-игра, в которой надо открывать коробки,
-                        зарабатывать внутриигровую валюту и предметы
-                    </p>
-                </div>
-                <br><br>
-                <div class="work wow fadeInLeft">
-                    <img src="img/newsh.png" alt="work" class="work_img">
-                    <h2 class="work_h">Funny News</h2>
-                    <p>
-                        <span class="orange">@Fun_News_Bot</span>: бот, генерирующий забавные новости.
-                        Для генерации отпарвьте <i>/newh</i> боту или в группу, где он есть
-                    </p>
-                </div>
-                <br><br>
-                <div class="work wow fadeInRight">
-                    <img src="img/rocketrobot.png" alt="work" class="work_img">
-                    <h2 class="work_h">Rocket Robot</h2>
-                    <p>
-                        <span class="orange">@RocketRobbot</span>: бот для проекта "деньги за регистрацию",
-                        информирует пользователя и передает требуемые данные от пользователя администраторам.
-                        (Не отвечаю за выплаты)
-                    </p>
-                </div>
-                <br><br>
-                <div class="work wow fadeInLeft">
-                    <img src="img/anonch.png" alt="work" class="work_img">
-                    <h2 class="work_h">Anonymous Chat</h2>
-                    <p>
-                        <span class="orange">@AnonymousCh_Bot</span>: бот, для анонимного общения, можно установить свой
-                        ник. Приватная версия бота со строгой модерацией - @AnonymousChBot
-                    </p>
-                </div>
-                <br><br>
-                <div class="work wow fadeInRight">
-                    <img src="img/sky.png" alt="work" class="work_img">
-                    <h2 class="work_h">P.S.Y.</h2>
-                    <p>
-                        <span class="orange">@P_S_Y_Bot</span>: нейронная сеть, созданная для поддержки общения в чатах.
-                    </p>
-                </div>
-                <div class="work wow fadeInLeft">
-                    <img src="img/meowgram.png" alt="work" class="work_img">
-                    <h2 class="work_h">Meowgram Bot</h2>
-                    <p>
-                        <span class="orange">@Meowgram_Bot</span>: Бот для связи пользователей и администрации с системой анти-спам, функцией ответа скрытым пользователям и кастомизируемым внешним видом.
-                    </p>
-                </div>
-                <div class="work wow fadeInRight">
-                    <img src="img/parser.png" alt="work" class="work_img">
-                    <h2 class="work_h">Channels Parser</h2>
-                    <p>
-                        <span class="orange">Парсер каналов</span>: User - Bot, присылающий все посты с указанных каналов в один, не имея на тех прав администратора
-                    </p>
-                </div>
-                <div class="work wow fadeInLeft">
-                    <img src="img/rss.png" alt="work" class="work_img">
-                    <h2 class="work_h">Парсер RSS</h2>
-                    <p>
-                        <span class="orange">@novost_ua</span>: Канал, автоматически наполняющийся ботом-парсером RSS-ленты.
-                    </p>
-                </div>
-                <div class="work wow fadeInRight">
-                    <img src="img/konserj.png" alt="work" class="work_img">
-                    <h2 class="work_h">Консьерж Бот</h2>
-                    <p>
-                        <span class="orange">@Konsyerj_bot</span>: Читает сообщения в группах, если находит ключевые слова - пересылает сообщение администраторам со ссылками на сообщение в группе и на отправителя. Встроенная админка.
-                    </p>
-                </div>
-                <div class="work wow fadeInLeft">
-                    <img src="img/esport.png" alt="work" class="work_img">
-                    <h2 class="work_h">Kharkiv Sport Bot</h2>
-                    <p>
-                        <span class="orange">@e_sport_kh_bot</span>: Бот, который помогает попасть на ивенты, если вы забыли документы. Встроенная регистрация и ввод данных по шаблону, генерация QR кода и странички с данными регистрации.
-                    </p>
-                </div>
-                <div class="work wow fadeInRight">
-                    <img src="img/cat.png" alt="work" class="work_img">
-                    <h2 class="work_h">Кот</h2>
-                    <p>
-                        <span class="orange">@GroupCatBot</span>: Симулятор кота в группах, можно "гладить" и "кормить", на каждую группу отдельные характеристики.
-                    </p>
-                </div>
-                <div class="work wow fadeInLeft">
-                    <img src="img/exchanger.png" alt="work" class="work_img">
-                    <h2 class="work_h">Обменник ZL-UAH</h2>
-                    <p>
-                        <span class="orange">@Exchanger_X_Bot</span>: Обменник Гривны - Злотые [отключен].
-                    </p>
-                </div>
-                <div class="work wow fadeInRight">
-                    <img src="img/dice.png" alt="work" class="work_img">
-                    <h2 class="work_h">Игрун | Кости</h2>
-                    <p>
-                        <span class="orange">@MPDiceBot</span>: Игра в кости с ботом, есть реальный и игровой баланс, автоматическое пополнение счета через QIWI, встроенная админка, бонус система, статистика.
-                    </p>
-                </div>
-                <div class="work wow fadeInLeft">
-                    <img src="img/generium.png" alt="work" class="work_img">
-                    <h2 class="work_h">Generium</h2>
-                    <p>
-                        <span class="orange">@Generium_Bot</span>: Бот, помогающий администрации GENERIUM продавать токены своим пользователям. Ввод данных по шаблону, админка.
-                    </p>
-                </div>
-                <div class="work wow fadeInRight">
-                    <img src="img/cbtns.png" alt="work" class="work_img">
-                    <h2 class="work_h">ChanButtons</h2>
-                    <p>
-                        <span class="orange">@ChanButtons_Bot</span>: Бот для каналов, ползволяет автоматически устанавливать ссылку на канал с произвольным текстом, добавлять к постам кастомизируемые счетчики лайков и др.
-                    </p>
-                </div>
-                <div class="work wow fadeInLeft">
-                    <img src="img/casinox.png" alt="work" class="work_img">
-                    <h2 class="work_h">Casino X</h2>
-                    <p>
-                        <span class="orange">@CasinoXRobot</span>: Игровое казино с множеством комбинаций, анимацией игры и статистикой [Инлайн-бот].
-                    </p>
-                </div>
-                <div class="work wow fadeInRight">
-                    <img src="img/cbtns.png" alt="work" class="work_img">
-                    <h2 class="work_h">Auction Square</h2>
-                    <p>
-                        <span class="orange">@AuctionSquareBot</span>: Бот для проекта @ChatWarsBot, помогает игрокам договариваться о покупке/продаже внутриигровых предметов и не рисковать из-за отсутствия покупателя/продавца.
-                    </p>
-                </div>
-            </div>
-            </div>
+
+        <div class="portrait-wrap" aria-label="Profile portrait">
+          <img class="portrait" src="https://github.com/ExposedCat.png" alt="Artem Prokop GitHub avatar" width="720" height="720">
         </div>
-        <img id="modal_img">
-        <div id="price_modal">
-            <p id="price_close">X</p>
-            <p>TELEGRAM ЧАТ-БОТЫ : <h1>от 300 ₴/чac</h1>
+      </section>
+
+      <section id="experience" aria-labelledby="experience-title">
+        <div class="section-heading">
+          <h2 id="experience-title">Projects</h2>
+        </div>
+
+        <div class="project-grid">
+          <a class="project-card" href="https://github.com/ExposedCat/gnome-notification-configurator" target="_blank" rel="noopener noreferrer">
+            <span class="number">01</span>
+            <h3>GNOME Notification Configurator</h3>
+            <p>Advanced GNOME notification control with per-app rate limits, visual theming, and precise placement.</p>
+          </a>
+          <a class="project-card" href="https://github.com/ExposedCat/context-tg" target="_blank" rel="noopener noreferrer">
+            <span class="number">02</span>
+            <h3>Context TG</h3>
+            <p>OpenAI-compatible Telegram AI workspace with tools, research flows, model routing, sub-agents, and reports.</p>
+          </a>
+          <a class="project-card" href="https://github.com/ExposedCat/numberflow" target="_blank" rel="noopener noreferrer">
+            <span class="number">03</span>
+            <h3>Numberflow</h3>
+            <p>Visual calculation workspace that turns formulas into auditable flowchart-style computation graphs.</p>
+          </a>
+          <a class="project-card" href="https://github.com/ExposedCat/pm3" target="_blank" rel="noopener noreferrer">
+            <span class="number">04</span>
+            <h3>PM3</h3>
+            <p>Podman Compose project manager with SQLite registration, stack lifecycle control, and boot-safe automation.</p>
+          </a>
+          <a class="project-card" href="https://github.com/ExposedCat/tg-local-llm" target="_blank" rel="noopener noreferrer">
+            <span class="number">05</span>
+            <h3>TG Local LLM</h3>
+            <p>Local Telegram AI assistant for configurable LLM workflows with no cloud dependencies.</p>
+          </a>
+          <a class="project-card" href="https://github.com/ExposedCat/snowy" target="_blank" rel="noopener noreferrer">
+            <span class="number">06</span>
+            <h3>Snowy</h3>
+            <p>Lightweight GNOME desktop extension adding configurable seasonal ambience.</p>
+          </a>
+          <a class="project-card" href="https://github.com/ExposedCat/dotfiles" target="_blank" rel="noopener noreferrer">
+            <span class="number">07</span>
+            <h3>Dotfiles</h3>
+            <p>Reproducible Fedora Silverblue and GNOME workstation baseline for OS, apps, and developer setup.</p>
+          </a>
+          <a class="project-card" href="https://github.com/ExposedCat/rollup-plugin-string-import" target="_blank" rel="noopener noreferrer">
+            <span class="number">08</span>
+            <h3>Rollup Import Plugin</h3>
+            <p>Type-safe Rollup asset ingestion that turns arbitrary files into string imports for production builds.</p>
+          </a>
+        </div>
+
+        <div class="experience-note">
+          <div class="callout">
+            <p>
+              Within my career, I was a member of an internal <a href="https://www.similarweb.com" target="_blank" rel="noopener noreferrer">Similarweb</a> team
+              and a core contributor at <a href="https://hub.luxonis.com" target="_blank" rel="noopener noreferrer">Luxonis Hub</a>.
+              Currently working at <a href="https://www.microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft</a>.
             </p>
-            <p>ПОЛЬЗОВАТЕЛЬСКИЕ TELEGRAM БОТЫ : <h1>от 350 ₴/чac</h1>
-            </p>
+          </div>
         </div>
-        <br>
-        <footer class="lineend">2019 | Powered by Pro100Artem</footer>
+      </section>
+
+      <section id="stack" aria-labelledby="stack-title">
+        <div class="section-heading">
+          <h2 id="stack-title">Stack</h2>
+          <p>
+            Technologies I have worked with across production apps, experiments,
+            open-source projects, and platform integrations.
+          </p>
+        </div>
+
+        <div class="stack" aria-label="Technology stack">
+          <span class="tag">TypeScript</span>
+          <span class="tag">NodeJS</span>
+          <span class="tag">Python</span>
+          <span class="tag">ExpressJS</span>
+          <span class="tag">NextJS</span>
+          <span class="tag">NestJS</span>
+          <span class="tag">Hono</span>
+          <span class="tag">ElysiaJS</span>
+          <span class="tag">WXT</span>
+          <span class="tag">grammY</span>
+          <span class="tag">Deno</span>
+          <span class="tag">Bun</span>
+          <span class="tag">Zod</span>
+          <span class="tag">WS</span>
+          <span class="tag">MQTT</span>
+          <span class="tag">WebRTC</span>
+          <span class="tag">GDBus</span>
+          <span class="tag">GraphQL</span>
+          <span class="tag">Urql</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Prisma</span>
+          <span class="tag">ElasticSearch</span>
+          <span class="tag">Qdrant</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Web Workers</span>
+          <span class="tag">WebGL</span>
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">ReactJS</span>
+          <span class="tag">FAST</span>
+          <span class="tag">EJS</span>
+          <span class="tag">ChartJS</span>
+          <span class="tag">ReactNative</span>
+          <span class="tag">GJS</span>
+          <span class="tag">Bash</span>
+          <span class="tag">Fedora</span>
+          <span class="tag">Ubuntu</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Podman</span>
+          <span class="tag">K8s</span>
+          <span class="tag">AWS</span>
+          <span class="tag">Azure</span>
+          <span class="tag">OpenAI</span>
+          <span class="tag">Codex</span>
+          <span class="tag">ElectronJS</span>
+          <span class="tag">GTK</span>
+          <span class="tag">GIT</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">Jest</span>
+          <span class="tag">Mocha</span>
+          <span class="tag">Chai</span>
+          <span class="tag">Playwright</span>
+          <a class="tag" href="https://github.com/ExposedCat/ExposedCat/blob/main/assets/b2c-dev-certificate.pdf" target="_blank" rel="noopener noreferrer">Salesforce</a>
+          <span class="tag">...</span>
+        </div>
+      </section>
+
+      <section id="education" aria-labelledby="education-title">
+        <div class="section-heading">
+          <h2 id="education-title">Education</h2>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <span>2022-2024</span>
+            <p>
+              <strong>Computer Science</strong> at
+              <a href="http://cvut.cz" target="_blank" rel="noopener noreferrer">Czech Technical University in Prague</a>.
+            </p>
+          </div>
+          <div class="timeline-item">
+            <span>2021-2025</span>
+            <p>
+              <strong>Computer Science</strong> at
+              <a href="http://op.edu.ua/en" target="_blank" rel="noopener noreferrer">State University "Odessa Polytechnic"</a>.
+            </p>
+          </div>
+          <div class="timeline-item">
+            <span>2016-2021</span>
+            <p>
+              <strong>Math &amp; IT class</strong> at
+              <a href="http://rl.odessa.ua/index.php/en" target="_blank" rel="noopener noreferrer">Richelieu Scientific Lyceum</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title">
+        <div class="contact-band">
+          <div>
+            <p class="eyebrow">Find me online</p>
+            <h2 id="contact-title">Open to engineering and business talks.</h2>
+            <p>
+              The fastest way to understand my work is through the projects above.
+              For professional context, LinkedIn and my CV are the best entry points.
+              You can also find me on Telegram or Instagram.
+              English preferred. Also speaking Ukrainian, Russian, and Czech.
+            </p>
+          </div>
+          <div class="socials" aria-label="Contact links">
+            <a class="button" href="https://www.linkedin.com/in/artem-prokop/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              <span>LinkedIn</span>
+            </a>
+            <a class="button secondary" href="https://t.me/ExposedCatDev" aria-label="Telegram" target="_blank" rel="noopener noreferrer">
+              <span>Telegram</span>
+            </a>
+            <a class="button secondary" href="https://www.instagram.com/e.xposed.cat/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <span>Instagram</span>
+            </a>
+            <a class="button secondary" href="https://github.com/ExposedCat/ExposedCat/blob/main/assets/CV.pdf" aria-label="CV" target="_blank" rel="noopener noreferrer">CV</a>
+          </div>
+        </div>
+      </section>
     </div>
+  </main>
 
-    <script src="js/wow.min.js"></script>
-    <script src="js/jquery.js"></script>
-    <script src="js/main.js"></script>
+  <footer class="page-shell site-footer">
+    <span>🄯 Artem Prokop · GPT 5.5 · Codex</span>
+  </footer>
 </body>
-
 </html>
