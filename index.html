@@ -11,6 +11,7 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://github.com/ExposedCat.png">
   <title>Artem Prokop</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
   <script>
     (() => {
       let theme;
@@ -103,7 +104,7 @@
           </article>
           <article class="project-card">
             <button class="project-preview" type="button" aria-label="Enlarge Context TG preview" data-title="Context TG">
-              <img class="project-thumbnail" src="assets/projects/context.webp" alt="Context TG GitHub repository preview" width="960" height="540" loading="lazy" decoding="async">
+              <img class="project-thumbnail" src="https://opengraph.githubassets.com/1/ExposedCat/context-tg" data-fallback-src="assets/projects/context.webp" alt="Context TG GitHub repository preview" width="1200" height="600" loading="lazy" decoding="async">
             </button>
             <div class="project-card__body">
               <h3><a href="https://github.com/ExposedCat/context-tg" target="_blank" rel="noopener noreferrer"><span>Context TG</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg></a></h3>
@@ -130,7 +131,7 @@
           </article>
           <article class="project-card">
             <button class="project-preview" type="button" aria-label="Enlarge TG Local LLM preview" data-title="TG Local LLM">
-              <img class="project-thumbnail" src="assets/projects/local-llm.webp" alt="TG Local LLM GitHub repository preview" width="960" height="540" loading="lazy" decoding="async">
+              <img class="project-thumbnail" src="https://opengraph.githubassets.com/1/ExposedCat/tg-local-llm" data-fallback-src="assets/projects/local-llm.webp" alt="TG Local LLM GitHub repository preview" width="1200" height="600" loading="lazy" decoding="async">
             </button>
             <div class="project-card__body">
               <h3><a href="https://github.com/ExposedCat/tg-local-llm" target="_blank" rel="noopener noreferrer"><span>TG Local LLM</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg></a></h3>
@@ -148,7 +149,7 @@
           </article>
           <article class="project-card">
             <button class="project-preview" type="button" aria-label="Enlarge Dotfiles preview" data-title="Dotfiles">
-              <img class="project-thumbnail" src="assets/projects/dotfiles.webp" alt="Dotfiles GitHub repository preview" width="960" height="540" loading="lazy" decoding="async">
+              <img class="project-thumbnail" src="https://opengraph.githubassets.com/1/ExposedCat/dotfiles" data-fallback-src="assets/projects/dotfiles.webp" alt="Dotfiles GitHub repository preview" width="1200" height="600" loading="lazy" decoding="async">
             </button>
             <div class="project-card__body">
               <h3><a href="https://github.com/ExposedCat/dotfiles" target="_blank" rel="noopener noreferrer"><span>Dotfiles</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg></a></h3>
@@ -157,7 +158,7 @@
           </article>
           <article class="project-card">
             <button class="project-preview" type="button" aria-label="Enlarge Rollup Import Plugin preview" data-title="Rollup Import Plugin">
-              <img class="project-thumbnail" src="assets/projects/rollup.webp" alt="Rollup Import Plugin GitHub repository preview" width="960" height="540" loading="lazy" decoding="async">
+              <img class="project-thumbnail" src="https://opengraph.githubassets.com/1/ExposedCat/rollup-plugin-string-import" data-fallback-src="assets/projects/rollup.webp" alt="Rollup Import Plugin GitHub repository preview" width="1200" height="600" loading="lazy" decoding="async">
             </button>
             <div class="project-card__body">
               <h3><a href="https://github.com/ExposedCat/rollup-plugin-string-import" target="_blank" rel="noopener noreferrer"><span>Rollup Import Plugin</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg></a></h3>
@@ -388,6 +389,18 @@
   </script>
   <script>
     (() => {
+      document.querySelectorAll(".project-thumbnail[data-fallback-src]").forEach((thumbnail) => {
+        const useFallback = () => {
+          const fallback = thumbnail.dataset.fallbackSrc;
+          if (!fallback) return;
+          delete thumbnail.dataset.fallbackSrc;
+          thumbnail.src = fallback;
+        };
+
+        thumbnail.addEventListener("error", useFallback, { once: true });
+        if (thumbnail.complete && thumbnail.naturalWidth === 0) useFallback();
+      });
+
       const dialog = document.querySelector(".image-lightbox");
       const preview = dialog.querySelector("img");
       const title = dialog.querySelector("h2");

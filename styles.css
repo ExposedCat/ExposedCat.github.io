@@ -881,7 +881,7 @@ h2 {
   *, *::before, *::after { transition: none !important; }
 }
 
-/* Local image previews keep project cards useful without third-party requests. */
+/* Project screenshots and live GitHub repository previews. */
 .icon-definitions {
   position: absolute;
   width: 0;
