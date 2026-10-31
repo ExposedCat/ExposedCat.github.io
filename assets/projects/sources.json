@@ -1,0 +1,38 @@
+{
+  "notifications": {
+    "source": "https://github.com/ExposedCat/gnome-notification-configurator/blob/main/assets/preview.png",
+    "kind": "repository screenshot"
+  },
+  "pm3": {
+    "source": "https://github.com/ExposedCat/pm3/blob/main/assets/preview.png",
+    "kind": "repository screenshot"
+  },
+  "sele": {
+    "source": "https://github.com/Chipi-Chapa-Corp/sele/blob/main/screenshots/sele-main.png",
+    "kind": "repository screenshot"
+  },
+  "numberflow": {
+    "source": "https://github.com/ExposedCat/numberflow",
+    "kind": "local app screenshot with a sample calculation; isolated temporary browser profile"
+  },
+  "context": {
+    "source": "https://opengraph.githubassets.com/1/ExposedCat/context-tg",
+    "repository": "https://github.com/ExposedCat/context-tg",
+    "kind": "GitHub Open Graph repository link preview"
+  },
+  "local-llm": {
+    "source": "https://opengraph.githubassets.com/1/ExposedCat/tg-local-llm",
+    "repository": "https://github.com/ExposedCat/tg-local-llm",
+    "kind": "GitHub Open Graph repository link preview"
+  },
+  "dotfiles": {
+    "source": "https://opengraph.githubassets.com/1/ExposedCat/dotfiles",
+    "repository": "https://github.com/ExposedCat/dotfiles",
+    "kind": "GitHub Open Graph repository link preview"
+  },
+  "rollup": {
+    "source": "https://opengraph.githubassets.com/1/ExposedCat/rollup-plugin-string-import",
+    "repository": "https://github.com/ExposedCat/rollup-plugin-string-import",
+    "kind": "GitHub Open Graph repository link preview"
+  }
+}

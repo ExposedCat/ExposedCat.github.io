@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portfolio of Artem Prokop, software engineer working with TypeScript, Python, web platforms, infrastructure, and developer tooling.">
-  <meta name="theme-color" content="#f6f3ee" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#101614" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f5f5f3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
   <meta property="og:title" content="Artem Prokop">
   <meta property="og:description" content="Software engineer building web platforms, automation, developer tooling, desktop apps, and AI-adjacent products.">
   <meta property="og:type" content="website">
@@ -13,788 +13,30 @@
   <title>Artem Prokop</title>
   <script>
     (() => {
+      let theme;
       try {
-        const theme = localStorage.getItem("portfolio-theme");
-
-        if (theme === "light" || theme === "dark") {
-          document.documentElement.dataset.theme = theme;
-        }
+        theme = localStorage.getItem("portfolio-theme");
       } catch {
       }
+      document.documentElement.dataset.theme = theme === "light" || theme === "dark"
+        ? theme
+        : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     })();
   </script>
-  <style>
-    @font-face {
-      font-family: "PortfolioFont";
-      src: url("/font.ttf") format("truetype");
-      font-display: swap;
-    }
-
-    :root {
-      color-scheme: light;
-      --bg: #f6f3ee;
-      --surface: #ffffff;
-      --surface-soft: #ebe8df;
-      --ink: #151515;
-      --lead: #323438;
-      --muted: #5d6269;
-      --line: #d7d1c6;
-      --teal: #7a5638;
-      --coral: #bd4b3e;
-      --gold: #7a5638;
-      --blue: #315b9f;
-      --link-underline: rgba(122, 86, 56, 0.35);
-      --glass: rgba(255, 255, 255, 0.42);
-      --glass-strong: rgba(255, 255, 255, 0.58);
-      --glass-line: rgba(255, 255, 255, 0.38);
-      --glass-edge: rgba(21, 21, 21, 0.08);
-      --glass-shadow: 0 22px 58px rgba(35, 31, 28, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.66);
-      --shadow: 0 24px 70px rgba(35, 31, 28, 0.12);
-      --button-bg: rgba(21, 21, 21, 0.84);
-      --button-bg-hover: rgba(21, 21, 21, 0.9);
-      --button-ink: #ffffff;
-      --button-border: rgba(255, 255, 255, 0.42);
-      --button-shadow: 0 14px 34px rgba(21, 21, 21, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.24);
-      --button-secondary-border: var(--glass-line);
-      --button-secondary-bg: rgba(255, 255, 255, 0.46);
-      --button-secondary-ink: var(--ink);
-      --button-secondary-shadow: 0 10px 26px rgba(35, 31, 28, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.58);
-      --portrait-glass-bg: rgba(255, 255, 255, 0.28);
-      --tag-border: rgba(122, 86, 56, 0.22);
-      --tag-bg: rgba(122, 86, 56, 0.09);
-      --tag-ink: #4a3323;
-      --tag-shadow: 0 8px 20px rgba(35, 31, 28, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.46);
-      --contact-bg: rgba(18, 18, 18, 0.86);
-      --contact-ink: #ffffff;
-      --contact-muted: rgba(255, 255, 255, 0.74);
-      --contact-border: rgba(255, 255, 255, 0.16);
-      --contact-shadow: 0 24px 70px rgba(21, 21, 21, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-      --contact-button-bg: rgba(255, 255, 255, 0.84);
-      --contact-button-bg-hover: #ffffff;
-      --contact-button-ink: var(--ink);
-      --contact-button-border: rgba(255, 255, 255, 0.56);
-      --contact-button-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.54);
-      --radius: 12px;
-      --pill: 999px;
-      font-family: "PortfolioFont", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    :root[data-theme="dark"] {
-      color-scheme: dark;
-      --bg: #101614;
-      --surface: #171f1b;
-      --surface-soft: #202a24;
-      --ink: #f4f0e8;
-      --lead: #d9d4c8;
-      --muted: #a6aca4;
-      --line: #7a5638;
-      --teal: #d8ae83;
-      --coral: #ff8a78;
-      --gold: #e2bb91;
-      --blue: #9ab8ff;
-      --link-underline: rgba(122, 86, 56, 0.72);
-      --glass: rgba(244, 240, 232, 0.07);
-      --glass-strong: rgba(244, 240, 232, 0.105);
-      --glass-line: rgba(139, 148, 158, 0.16);
-      --glass-edge: rgba(88, 166, 255, 0.12);
-      --glass-shadow: 0 30px 86px rgba(2, 8, 5, 0.52), inset 0 1px 0 rgba(244, 240, 232, 0.14);
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
-      --button-bg: rgba(244, 240, 232, 0.92);
-      --button-bg-hover: #fffaf0;
-      --button-ink: #101614;
-      --button-border: rgba(88, 166, 255, 0.22);
-      --button-shadow: 0 16px 40px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.48);
-      --button-secondary-border: var(--glass-line);
-      --button-secondary-bg: rgba(244, 240, 232, 0.07);
-      --button-secondary-ink: var(--ink);
-      --button-secondary-shadow: 0 12px 32px rgba(2, 8, 5, 0.36), inset 0 1px 0 rgba(244, 240, 232, 0.13);
-      --portrait-glass-bg: rgba(122, 86, 56, 0.12);
-      --tag-border: rgba(2, 8, 5, 0.68);
-      --tag-bg: rgba(216, 174, 131, 0.16);
-      --tag-ink: #f4f0e8;
-      --tag-shadow: 0 8px 18px rgba(2, 8, 5, 0.34), inset 0 1px 0 rgba(255, 250, 240, 0.18), inset 0 -1px 0 rgba(2, 8, 5, 0.22);
-      --contact-bg: rgba(20, 30, 25, 0.88);
-      --contact-ink: var(--ink);
-      --contact-muted: rgba(217, 212, 200, 0.78);
-      --contact-border: rgba(139, 148, 158, 0.16);
-      --contact-shadow: 0 30px 86px rgba(2, 8, 5, 0.56), inset 0 1px 0 rgba(244, 240, 232, 0.12);
-      --contact-button-bg: rgba(244, 240, 232, 0.9);
-      --contact-button-bg-hover: #fffaf0;
-      --contact-button-ink: #101614;
-      --contact-button-border: rgba(88, 166, 255, 0.18);
-      --contact-button-shadow: 0 14px 34px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.44);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        color-scheme: dark;
-        --bg: #101614;
-        --surface: #171f1b;
-        --surface-soft: #202a24;
-        --ink: #f4f0e8;
-        --lead: #d9d4c8;
-        --muted: #a6aca4;
-        --line: #7a5638;
-        --teal: #d8ae83;
-        --coral: #ff8a78;
-        --gold: #e2bb91;
-        --blue: #9ab8ff;
-        --link-underline: rgba(122, 86, 56, 0.72);
-        --glass: rgba(244, 240, 232, 0.07);
-        --glass-strong: rgba(244, 240, 232, 0.105);
-        --glass-line: rgba(139, 148, 158, 0.16);
-        --glass-edge: rgba(88, 166, 255, 0.12);
-        --glass-shadow: 0 30px 86px rgba(2, 8, 5, 0.52), inset 0 1px 0 rgba(244, 240, 232, 0.14);
-        --shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
-        --button-bg: rgba(244, 240, 232, 0.92);
-        --button-bg-hover: #fffaf0;
-        --button-ink: #101614;
-        --button-border: rgba(88, 166, 255, 0.22);
-        --button-shadow: 0 16px 40px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.48);
-        --button-secondary-border: var(--glass-line);
-        --button-secondary-bg: rgba(244, 240, 232, 0.07);
-        --button-secondary-ink: var(--ink);
-        --button-secondary-shadow: 0 12px 32px rgba(2, 8, 5, 0.36), inset 0 1px 0 rgba(244, 240, 232, 0.13);
-        --portrait-glass-bg: rgba(122, 86, 56, 0.12);
-        --tag-border: rgba(2, 8, 5, 0.68);
-        --tag-bg: rgba(216, 174, 131, 0.16);
-        --tag-ink: #f4f0e8;
-        --tag-shadow: 0 8px 18px rgba(2, 8, 5, 0.34), inset 0 1px 0 rgba(255, 250, 240, 0.18), inset 0 -1px 0 rgba(2, 8, 5, 0.22);
-        --contact-bg: rgba(20, 30, 25, 0.88);
-        --contact-ink: var(--ink);
-        --contact-muted: rgba(217, 212, 200, 0.78);
-        --contact-border: rgba(139, 148, 158, 0.16);
-        --contact-shadow: 0 30px 86px rgba(2, 8, 5, 0.56), inset 0 1px 0 rgba(244, 240, 232, 0.12);
-        --contact-button-bg: rgba(244, 240, 232, 0.9);
-        --contact-button-bg-hover: #fffaf0;
-        --contact-button-ink: #101614;
-        --contact-button-border: rgba(88, 166, 255, 0.18);
-        --contact-button-shadow: 0 14px 34px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.44);
-      }
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      background-color: var(--bg);
-      color: var(--ink);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration-color: var(--link-underline);
-      text-underline-offset: 0.22em;
-      transition: color 160ms ease, text-decoration-color 160ms ease, border-color 160ms ease, background 160ms ease, transform 160ms ease;
-    }
-
-    a:hover {
-      color: var(--teal);
-      text-decoration-color: currentColor;
-    }
-
-    .page-shell {
-      width: min(1120px, calc(100% - 48px));
-      margin: 0 auto;
-    }
-
-    .theme-toggle {
-      position: fixed;
-      top: 18px;
-      right: 18px;
-      z-index: 10;
-      display: inline-flex;
-      width: 44px;
-      height: 44px;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--glass-line);
-      border-radius: var(--pill);
-      background: var(--glass);
-      color: var(--ink);
-      box-shadow: var(--glass-shadow);
-      cursor: pointer;
-      -webkit-backdrop-filter: blur(2px) saturate(1.25);
-      backdrop-filter: blur(2px) saturate(1.25);
-      transition: background 160ms ease, color 160ms ease, transform 160ms ease;
-    }
-
-    .theme-toggle:hover {
-      background: var(--glass-strong);
-      transform: translateY(-1px);
-    }
-
-    .theme-toggle:focus-visible {
-      outline: 3px solid var(--teal);
-      outline-offset: 3px;
-    }
-
-    .theme-toggle__icon {
-      display: block;
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: currentColor;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-width: 2;
-    }
-
-    .theme-toggle__icon--sun {
-      display: none;
-    }
-
-    :root[data-theme="dark"] .theme-toggle__icon--moon {
-      display: none;
-    }
-
-    :root[data-theme="dark"] .theme-toggle__icon--sun {
-      display: block;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) .theme-toggle__icon--moon {
-        display: none;
-      }
-
-      :root:not([data-theme="light"]) .theme-toggle__icon--sun {
-        display: block;
-      }
-    }
-
-    .button {
-      display: inline-flex;
-      min-height: 40px;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid transparent;
-      border-radius: var(--pill);
-      padding: 0 14px;
-      font-weight: 700;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .hero {
-      display: grid;
-      min-height: 100svh;
-      align-items: center;
-      gap: 44px;
-      grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
-      padding: 48px 0 54px;
-    }
-
-    .eyebrow {
-      margin: 0 0 18px;
-      color: var(--teal);
-      font-size: 0.84rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    h1 {
-      max-width: 760px;
-      margin-bottom: 22px;
-      font-size: 5rem;
-      line-height: 0.95;
-    }
-
-    .lead {
-      max-width: 720px;
-      margin-bottom: 28px;
-      color: var(--lead);
-      font-size: 1.28rem;
-      line-height: 1.55;
-    }
-
-    .hero-actions,
-    .socials {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .button {
-      border-color: var(--button-border);
-      background: var(--button-bg);
-      color: var(--button-ink);
-      box-shadow: var(--button-shadow);
-      -webkit-backdrop-filter: blur(2px) saturate(1.25);
-      backdrop-filter: blur(2px) saturate(1.25);
-    }
-
-    .button:hover {
-      background: var(--button-bg-hover);
-      color: var(--button-ink);
-      transform: translateY(-1px);
-    }
-
-    .button.secondary {
-      border-color: var(--button-secondary-border);
-      background: var(--button-secondary-bg);
-      color: var(--button-secondary-ink);
-      box-shadow: var(--button-secondary-shadow);
-    }
-
-    .button.secondary:hover {
-      color: var(--button-secondary-ink);
-    }
-
-    .portrait-wrap {
-      position: relative;
-      justify-self: end;
-      width: min(360px, 100%);
-    }
-
-    .portrait-wrap::before {
-      position: absolute;
-      inset: 18px -18px -18px 18px;
-      border: 1px solid var(--glass-line);
-      border-radius: var(--radius);
-      background: var(--portrait-glass-bg);
-      box-shadow: var(--glass-shadow);
-      -webkit-backdrop-filter: blur(2px) saturate(1.25);
-      backdrop-filter: blur(2px) saturate(1.25);
-      content: "";
-    }
-
-    .portrait {
-      position: relative;
-      display: block;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 1 / 1;
-      border: 1px solid var(--glass-line);
-      border-radius: var(--radius);
-      object-fit: cover;
-      box-shadow: var(--glass-shadow);
-    }
-
-    section {
-      scroll-margin-top: 92px;
-      padding: 64px 0;
-    }
-
-    .section-heading {
-      display: grid;
-      gap: 12px;
-      grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
-      margin-bottom: 30px;
-    }
-
-    h2 {
-      margin-bottom: 0;
-      font-size: 2.2rem;
-      line-height: 1.08;
-    }
-
-    .section-heading p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.04rem;
-    }
-
-    #stack .section-heading {
-      grid-template-columns: 1fr;
-    }
-
-    #stack .section-heading p {
-      max-width: 720px;
-    }
-
-    .project-grid {
-      display: flex;
-      flex-wrap: wrap;
-      counter-reset: project-card;
-      justify-content: center;
-      gap: 16px;
-    }
-
-    .project-card {
-      flex: 0 1 calc((100% - 32px) / 3);
-      min-height: 176px;
-      counter-increment: project-card;
-      border: 1px solid var(--glass-line);
-      border-radius: var(--radius);
-      background: var(--glass);
-      padding: 22px;
-      text-decoration: none;
-      box-shadow: var(--glass-shadow);
-    }
-
-    .project-card::before {
-      display: block;
-      margin-bottom: 14px;
-      color: var(--gold);
-      content: counter(project-card, decimal-leading-zero);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 0.86rem;
-      font-weight: 900;
-      line-height: 1;
-    }
-
-    .project-card:hover {
-      background: var(--glass-strong);
-      color: var(--ink);
-      transform: translateY(-3px);
-    }
-
-    .project-card h3 {
-      margin: 0 0 10px;
-      color: var(--ink);
-      font-size: 1.34rem;
-      line-height: 1.12;
-    }
-
-    .project-card p {
-      margin-bottom: 0;
-      color: var(--muted);
-    }
-
-    .experience-note {
-      margin: 0 0 18px;
-    }
-
-    .company-link {
-      display: inline;
-      margin-inline-start: 0.08em;
-      white-space: nowrap;
-    }
-
-    .company-logo {
-      display: inline-block;
-      width: auto;
-      height: 0.75em;
-      margin-inline-end: 0.18em;
-      object-fit: contain;
-      vertical-align: middle;
-    }
-
-    .company-logo__similarweb-navy {
-      fill: #092540;
-    }
-
-    :root[data-theme="dark"] .company-logo--dark-adaptive {
-      filter: brightness(0) invert(1);
-    }
-
-    :root[data-theme="dark"] .company-logo__similarweb-navy {
-      fill: #f4f0e8;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) .company-logo--dark-adaptive {
-        filter: brightness(0) invert(1);
-      }
-
-      :root:not([data-theme="light"]) .company-logo__similarweb-navy {
-        fill: #f4f0e8;
-      }
-    }
-
-    .callout {
-      border: 1px solid var(--glass-line);
-      border-radius: var(--radius);
-      background: var(--glass);
-      padding: 22px;
-      box-shadow: var(--glass-shadow);
-    }
-
-    .stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .tag {
-      display: inline-flex;
-      min-height: 34px;
-      align-items: center;
-      border: 1px solid var(--tag-border);
-      border-radius: var(--pill);
-      background: var(--tag-bg);
-      padding: 0 12px;
-      color: var(--tag-ink);
-      font-size: 0.94rem;
-      font-weight: 700;
-      box-shadow: var(--tag-shadow);
-    }
-
-    .education-ledger {
-      display: grid;
-      border-top: 1px solid var(--glass-line);
-      border-bottom: 1px solid var(--glass-line);
-    }
-
-    .education-record {
-      display: grid;
-      grid-template-columns: minmax(142px, 0.32fr) minmax(0, 1fr);
-      gap: clamp(20px, 4vw, 52px);
-      align-items: start;
-      border-bottom: 1px solid var(--glass-line);
-      padding: 24px 0;
-    }
-
-    .education-record:last-child {
-      border-bottom: 0;
-    }
-
-    .education-record__period {
-      display: grid;
-      gap: 10px;
-      align-content: start;
-    }
-
-    .education-record__dates {
-      color: var(--ink);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 1rem;
-      font-weight: 800;
-      line-height: 1.15;
-    }
-
-    .education-record__status {
-      display: inline-flex;
-      width: max-content;
-      min-height: 34px;
-      align-items: center;
-      border: 1px solid var(--tag-border);
-      border-radius: var(--pill);
-      background: var(--tag-bg);
-      padding: 0 12px;
-      color: var(--tag-ink);
-      font-size: 0.94rem;
-      font-weight: 700;
-      box-shadow: var(--tag-shadow);
-    }
-
-    .education-record__status--muted {
-      border-color: var(--glass-line);
-      background: var(--glass);
-      color: var(--muted);
-    }
-
-    .education-record__body {
-      display: grid;
-      gap: 7px;
-      min-width: 0;
-    }
-
-    .education-record h3 {
-      margin: 0;
-      color: var(--ink);
-      font-size: 1.16rem;
-      line-height: 1.25;
-    }
-
-    .education-record p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.45;
-    }
-
-    .education-record strong {
-      color: var(--ink);
-    }
-
-    .education-record__meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 14px;
-      color: var(--muted);
-      font-size: 0.98rem;
-      line-height: 1.35;
-    }
-
-    .education-record__meta span {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .education-record__meta span + span::before {
-      display: block;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--teal);
-      content: "";
-      opacity: 0.8;
-    }
-
-    .contact-band {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      border: 1px solid var(--contact-border);
-      border-radius: var(--radius);
-      background: var(--contact-bg);
-      color: var(--contact-ink);
-      padding: 34px;
-      box-shadow: var(--contact-shadow);
-      -webkit-backdrop-filter: blur(2px) saturate(1.2);
-      backdrop-filter: blur(2px) saturate(1.2);
-    }
-
-    .contact-band p {
-      margin: 0;
-      color: var(--contact-muted);
-    }
-
-    .contact-band > div:first-child {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .contact-band h2 {
-      margin: 0;
-    }
-
-    .contact-band .socials {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      margin-top: 0;
-      width: 100%;
-    }
-
-    .contact-band .button {
-      flex: 1 1 140px;
-      border-color: var(--contact-button-border);
-      background: var(--contact-button-bg);
-      color: var(--contact-button-ink);
-      box-shadow: var(--contact-button-shadow);
-    }
-
-    .contact-band .button:hover {
-      background: var(--contact-button-bg-hover);
-      color: var(--contact-button-ink);
-    }
-
-    .site-footer {
-      padding: 28px 0 42px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      text-align: center;
-    }
-
-    @media (max-width: 860px) {
-      .hero,
-      .section-heading,
-      .experience-note {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 54px;
-        text-align: center;
-      }
-
-      h1 {
-        margin-right: auto;
-        margin-left: auto;
-        font-size: 3.6rem;
-      }
-
-      .lead {
-        margin-right: auto;
-        margin-left: auto;
-      }
-
-      .hero-actions {
-        justify-content: center;
-      }
-
-      .portrait-wrap {
-        justify-self: center;
-        width: min(320px, 88%);
-      }
-
-      .project-grid {
-        justify-content: center;
-      }
-
-      .project-card {
-        flex-basis: calc((100% - 16px) / 2);
-      }
-
-    }
-
-    @media (max-width: 620px) {
-      .page-shell {
-        width: min(100% - 48px, 1120px);
-      }
-
-      .portrait-wrap {
-        width: min(100%, 320px);
-      }
-
-      .portrait {
-        height: min(320px, calc(100vw - 48px));
-      }
-
-      h1 {
-        font-size: 2.8rem;
-      }
-
-      h2 {
-        font-size: 1.82rem;
-      }
-
-      .lead {
-        font-size: 1.08rem;
-      }
-
-      section {
-        padding: 48px 0;
-      }
-
-      .education-record {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        padding: 22px 0;
-      }
-
-      .education-record__period {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-      }
-
-      .education-record h3 {
-        font-size: 1.08rem;
-      }
-
-      .project-card {
-        flex-basis: 100%;
-        min-height: 156px;
-      }
-
-      .contact-band {
-        padding: 48px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="icon-projects" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="icon-github" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.3-4.3-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.2-1.5 6.2-6.8a5.3 5.3 0 0 0-1.5-3.7 4.9 4.9 0 0 0-.1-3.7s-1.2-.4-3.8 1.4a12.9 12.9 0 0 0-6.8 0C5.5-.1 4.3.3 4.3.3a4.9 4.9 0 0 0-.1 3.7 5.3 5.3 0 0 0-1.5 3.7c0 5.3 3.2 6.5 6.2 6.8a3.4 3.4 0 0 0-.9 2.6V22" transform="translate(1 1) scale(.9)"/></symbol>
+    <symbol id="icon-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></symbol>
+    <symbol id="icon-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M11 17v-7m0 3a3 3 0 0 1 6 0v4"/><circle cx="7" cy="7" r=".6" fill="currentColor"/></symbol>
+    <symbol id="icon-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+    <symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </defs></svg>
+
   <button class="theme-toggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
     <svg class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true" viewBox="0 0 24 24">
       <path d="M20.4 14.8A8.5 8.5 0 0 1 9.2 3.6a8.5 8.5 0 1 0 11.2 11.2Z"></path>
@@ -823,9 +65,9 @@
             <a class="company-link" href="https://www.microsoft.com" target="_blank" rel="noopener noreferrer"><img class="company-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAYUlEQVRYw2P8H670n4ECwLjyHiMy32d9AEXmMVGimRZg1EGjDhp10KiDBhqMOmjUQaMOGgWjYLADRuaVXyhqA/8N50FpU/8/yD7aph510KiDRh006qBRB406aDCBUQcRAgDPQw1PzPhu0QAAAABJRU5ErkJggg==" alt="" width="36" height="36" decoding="async">Microsoft</a>.
           </p>
           <div class="hero-actions" aria-label="Primary links">
-            <a class="button" href="#experience">Projects</a>
-            <a class="button secondary" href="https://github.com/ExposedCat" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="button secondary" href="https://github.com/ExposedCat/ExposedCat/blob/main/assets/CV.pdf" target="_blank" rel="noopener noreferrer">PDF CV</a>
+            <a class="button" href="#experience"><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-projects"></use></svg><span>Projects</span></a>
+            <a class="button secondary" href="https://github.com/ExposedCat" target="_blank" rel="noopener noreferrer"><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg><span>GitHub</span></a>
+            <a class="button secondary" href="https://github.com/ExposedCat/ExposedCat/blob/main/assets/CV.pdf" target="_blank" rel="noopener noreferrer"><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-file"></use></svg><span>PDF CV</span></a>
           </div>
         </div>
 
@@ -850,38 +92,78 @@
         </div>
 
         <div class="project-grid">
-          <a class="project-card" href="https://github.com/ExposedCat/gnome-notification-configurator" target="_blank" rel="noopener noreferrer">
-            <h3>GNOME Notification Configurator</h3>
-            <p>Advanced GNOME notification control with per-app rate limits, visual theming, and precise placement.</p>
-          </a>
-          <a class="project-card" href="https://github.com/ExposedCat/context-tg" target="_blank" rel="noopener noreferrer">
-            <h3>Context TG</h3>
-            <p>OpenAI-compatible Telegram AI workspace with tools, research flows, model routing, sub-agents, and reports.</p>
-          </a>
-          <a class="project-card" href="https://github.com/ExposedCat/numberflow" target="_blank" rel="noopener noreferrer">
-            <h3>Numberflow</h3>
-            <p>Visual calculation workspace that turns formulas into auditable flowchart-style computation graphs.</p>
-          </a>
-          <a class="project-card" href="https://github.com/ExposedCat/pm3" target="_blank" rel="noopener noreferrer">
-            <h3>PM3</h3>
-            <p>Podman Compose project manager with SQLite registration, stack lifecycle control, and boot-safe automation.</p>
-          </a>
-          <a class="project-card" href="https://github.com/ExposedCat/tg-local-llm" target="_blank" rel="noopener noreferrer">
-            <h3>TG Local LLM</h3>
-            <p>Local Telegram AI assistant for configurable LLM workflows with no cloud dependencies.</p>
-          </a>
-          <a class="project-card" href="https://github.com/ExposedCat/snowy" target="_blank" rel="noopener noreferrer">
-            <h3>Snowy</h3>
-            <p>Lightweight GNOME desktop extension adding configurable seasonal ambience.</p>
-          </a>
-          <a class="project-card" href="https://github.com/ExposedCat/dotfiles" target="_blank" rel="noopener noreferrer">
-            <h3>Dotfiles</h3>
-            <p>Reproducible Fedora Silverblue and GNOME workstation baseline for OS, apps, and developer setup.</p>
-          </a>
-          <a class="project-card" href="https://github.com/ExposedCat/rollup-plugin-string-import" target="_blank" rel="noopener noreferrer">
-            <h3>Rollup Import Plugin</h3>
-            <p>Type-safe Rollup asset ingestion that turns arbitrary files into string imports for production builds.</p>
-          </a>
+          <article class="project-card">
+            <button class="project-preview" type="button" aria-label="Enlarge GNOME Notification Configurator preview" data-title="GNOME Notification Configurator">
+              <img class="project-thumbnail" src="assets/projects/notifications.webp" alt="Notification Configurator preferences and notification styling" width="960" height="540" loading="lazy" decoding="async">
+            </button>
+            <div class="project-card__body">
+              <h3><a href="https://github.com/ExposedCat/gnome-notification-configurator" target="_blank" rel="noopener noreferrer"><span>GNOME Notification Configurator</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg></a></h3>
+              <p>Advanced GNOME notification control with per-app rate limits, visual theming, and precise placement.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <button class="project-preview" type="button" aria-label="Enlarge Context TG preview" data-title="Context TG">
+              <img class="project-thumbnail" src="assets/projects/context.webp" alt="Context TG GitHub repository preview" width="960" height="540" loading="lazy" decoding="async">
+            </button>
+            <div class="project-card__body">
+              <h3><a href="https://github.com/ExposedCat/context-tg" target="_blank" rel="noopener noreferrer"><span>Context TG</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg></a></h3>
+              <p>OpenAI-compatible Telegram AI workspace with tools, research flows, model routing, sub-agents, and reports.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <button class="project-preview" type="button" aria-label="Enlarge Numberflow preview" data-title="Numberflow">
+              <img class="project-thumbnail" src="assets/projects/numberflow.webp" alt="Numberflow calculation graph" width="960" height="540" loading="lazy" decoding="async">
+            </button>
+            <div class="project-card__body">
+              <h3><a href="https://github.com/ExposedCat/numberflow" target="_blank" rel="noopener noreferrer"><span>Numberflow</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg></a></h3>
+              <p>Visual calculation workspace that turns formulas into auditable flowchart-style computation graphs.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <button class="project-preview" type="button" aria-label="Enlarge PM3 preview" data-title="PM3">
+              <img class="project-thumbnail" src="assets/projects/pm3.webp" alt="PM3 terminal interface" width="960" height="540" loading="lazy" decoding="async">
+            </button>
+            <div class="project-card__body">
+              <h3><a href="https://github.com/ExposedCat/pm3" target="_blank" rel="noopener noreferrer"><span>PM3</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg></a></h3>
+              <p>Podman Compose project manager with SQLite registration, stack lifecycle control, and boot-safe automation.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <button class="project-preview" type="button" aria-label="Enlarge TG Local LLM preview" data-title="TG Local LLM">
+              <img class="project-thumbnail" src="assets/projects/local-llm.webp" alt="TG Local LLM GitHub repository preview" width="960" height="540" loading="lazy" decoding="async">
+            </button>
+            <div class="project-card__body">
+              <h3><a href="https://github.com/ExposedCat/tg-local-llm" target="_blank" rel="noopener noreferrer"><span>TG Local LLM</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg></a></h3>
+              <p>Local Telegram AI assistant for configurable LLM workflows with no cloud dependencies.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <button class="project-preview" type="button" aria-label="Enlarge Sele preview" data-title="Sele">
+              <img class="project-thumbnail" src="assets/projects/sele.webp" alt="Sele desktop workspace with agent conversation and code" width="960" height="540" loading="lazy" decoding="async">
+            </button>
+            <div class="project-card__body">
+              <h3><a href="https://github.com/Chipi-Chapa-Corp/sele" target="_blank" rel="noopener noreferrer"><span>Sele</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg></a></h3>
+              <p>Desktop workspace for Codex, Claude Code, GitHub Copilot, and OpenCode, with chats, code diffs, files, and terminals.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <button class="project-preview" type="button" aria-label="Enlarge Dotfiles preview" data-title="Dotfiles">
+              <img class="project-thumbnail" src="assets/projects/dotfiles.webp" alt="Dotfiles GitHub repository preview" width="960" height="540" loading="lazy" decoding="async">
+            </button>
+            <div class="project-card__body">
+              <h3><a href="https://github.com/ExposedCat/dotfiles" target="_blank" rel="noopener noreferrer"><span>Dotfiles</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg></a></h3>
+              <p>Reproducible Fedora Silverblue and GNOME workstation baseline for OS, apps, and developer setup.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <button class="project-preview" type="button" aria-label="Enlarge Rollup Import Plugin preview" data-title="Rollup Import Plugin">
+              <img class="project-thumbnail" src="assets/projects/rollup.webp" alt="Rollup Import Plugin GitHub repository preview" width="960" height="540" loading="lazy" decoding="async">
+            </button>
+            <div class="project-card__body">
+              <h3><a href="https://github.com/ExposedCat/rollup-plugin-string-import" target="_blank" rel="noopener noreferrer"><span>Rollup Import Plugin</span><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg></a></h3>
+              <p>Type-safe Rollup asset ingestion that turns arbitrary files into string imports for production builds.</p>
+            </div>
+          </article>
         </div>
 
       </section>
@@ -1024,23 +306,33 @@
           </div>
           <div class="socials" aria-label="Contact links">
             <a class="button" href="https://www.linkedin.com/in/artem-prokop/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-              <span>LinkedIn</span>
+              <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-linkedin"></use></svg><span>LinkedIn</span>
             </a>
             <a class="button secondary" href="https://t.me/ExposedCatDev" aria-label="Telegram" target="_blank" rel="noopener noreferrer">
-              <span>Telegram</span>
+              <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-send"></use></svg><span>Telegram</span>
             </a>
             <a class="button secondary" href="https://www.instagram.com/e.xposed.cat/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-              <span>Instagram</span>
+              <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-instagram"></use></svg><span>Instagram</span>
             </a>
-            <a class="button secondary" href="https://github.com/ExposedCat/ExposedCat/blob/main/assets/CV.pdf" aria-label="CV" target="_blank" rel="noopener noreferrer">CV</a>
+            <a class="button secondary" href="https://github.com/ExposedCat/ExposedCat/blob/main/assets/CV.pdf" aria-label="CV" target="_blank" rel="noopener noreferrer"><svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-file"></use></svg><span>CV</span></a>
           </div>
         </div>
       </section>
     </div>
   </main>
 
+  <dialog class="image-lightbox" aria-labelledby="preview-title">
+    <div class="image-lightbox__header">
+      <h2 id="preview-title"></h2>
+      <button class="image-lightbox__close" type="button" aria-label="Close image preview">
+        <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+    </div>
+    <img class="image-lightbox__image" alt="">
+  </dialog>
+
   <footer class="page-shell site-footer">
-    <span>🄯 Artem Prokop · GPT 5.5</span>
+    <span>🄯 Artem Prokop · GPT 5.5 · GPT 6.1 Sol</span>
   </footer>
   <script>
     (() => {
@@ -1065,7 +357,7 @@
         toggle.title = `Switch to ${nextTheme} mode`;
 
         themeColors.forEach((themeColor) => {
-          themeColor.content = theme === "dark" ? "#101614" : "#f6f3ee";
+          themeColor.content = theme === "dark" ? "#121212" : "#f5f5f3";
         });
       };
 
@@ -1082,13 +374,47 @@
         updateToggle();
       });
 
-      if (prefersDark.addEventListener) {
-        prefersDark.addEventListener("change", updateToggle);
-      } else {
-        prefersDark.addListener(updateToggle);
-      }
+      prefersDark.addEventListener("change", () => {
+        try {
+          if (localStorage.getItem(storageKey)) return;
+        } catch {
+        }
+        root.dataset.theme = prefersDark.matches ? "dark" : "light";
+        updateToggle();
+      });
 
       updateToggle();
+    })();
+  </script>
+  <script>
+    (() => {
+      const dialog = document.querySelector(".image-lightbox");
+      const preview = dialog.querySelector("img");
+      const title = dialog.querySelector("h2");
+      let trigger;
+      let previousOverflow;
+
+      document.querySelectorAll(".project-preview").forEach((button) => {
+        button.addEventListener("click", () => {
+          trigger = button;
+          const thumbnail = button.querySelector("img");
+          preview.src = thumbnail.currentSrc || thumbnail.src;
+          preview.alt = thumbnail.alt;
+          title.textContent = button.dataset.title;
+          previousOverflow = document.body.style.overflow;
+          document.body.style.overflow = "hidden";
+          dialog.showModal();
+        });
+      });
+      dialog.querySelector("button").addEventListener("click", () => dialog.close());
+      preview.addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+      dialog.addEventListener("close", () => {
+        document.body.style.overflow = previousOverflow;
+        trigger?.focus({ preventScroll: true });
+      });
     })();
   </script>
 </body>
